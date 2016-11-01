@@ -11,11 +11,11 @@ def astar(map)
 
   visited = {}
   queue = []
-  queue << State.new(start_point.x, start_point.y, start_point.x*ROWS + start_point.y, 0, 0, nil) #cost = 0, heuristic = 0, parent = nil
+  queue << State.new(start_point.x, start_point.y, start_point.x*COLS + start_point.y, 0, 0, nil) #cost = 0, heuristic = 0, parent = nil
 
   while queue.size > 0
     state = queue.shift
-    visited[state.x*ROWS + state.y] = state               #state unique value
+    visited[state.x*COLS + state.y] = state               #state unique value
     puts "visiting #{state.val} with cost #{state.cost} and heuristic #{state.heuristic}"
 
     if state.x == end_point.x && state.y == end_point.y
@@ -45,10 +45,10 @@ def astar(map)
       (-1..1).each do |y_step|
         next if x_step == 0 && y_step == 0
 
-        state_val = (state.x + x_step)*ROWS + state.y + y_step
+        state_val = (state.x + x_step)*COLS + state.y + y_step
         if state.x + x_step >= 0  && state.x + x_step < ROWS && state.y + y_step >= 0 && state.y + y_step < COLS
           if visited[state_val] == nil && check_queue(queue, state_val) && graph[state.x + x_step][state.y + y_step].type != StateType::WALL
-              queue << State.new(state.x + x_step, state.y + y_step, state_val, state.cost + 1,
+              queue << State.new(state.x + x_step, state.y + y_step, state_val, state.cost + 10,
                                   euclidian_distance(state.x + x_step, state.y + y_step, end_point.x, end_point.y), state)
               puts state_val
           else
@@ -60,9 +60,9 @@ def astar(map)
     if graph[state.x][state.y].type == StateType::TP
       tps.each do |tp|
         if state.x != tp.x && state.y != tp.y
-          state_val = tp.x*ROWS + tp.y
+          state_val = tp.x*COLS + tp.y
           if  visited[state_val] == nil && check_queue(queue, state_val)
-            queue << State.new(tp.x, tp.y, state_val, state.cost + 1, euclidian_distance(tp.x, tp.y, end_point.x, end_point.y), state)
+            queue << State.new(tp.x, tp.y, state_val, state.cost + 5, euclidian_distance(tp.x, tp.y, end_point.x, end_point.y), state)
           end
         end
       end

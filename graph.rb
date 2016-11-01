@@ -12,6 +12,7 @@ class Graph
     @teleports = []
 
     init_graph
+    puts @rows, @cols
   end
 
   def set_start_point start_point
@@ -23,8 +24,8 @@ class Graph
   end
 
   def init_map
-    (0...ROWS).each do |row|
-      (0...COLS).each do |col|
+    (0...@rows).each do |row|
+      (0...@cols).each do |col|
         if @graph[row][col].type == StateType::START
           @start_point = Pair.new(row, col)
         elsif @graph[row][col].type == StateType::GOAL
@@ -47,11 +48,13 @@ class Graph
 
   private
   def init_graph
+    state_val = 0
     @graph = []
-    (0...rows).each do |row|
+    (0...@rows).each do |row|
       tmp = Array.new
-      (0...cols).each do |col|
-        tmp << Node.new(row*@rows + col, row, col)
+      (0...@cols).each do |col|
+        tmp << Node.new(state_val, row, col)
+        state_val += 1
       end
       @graph << tmp
     end

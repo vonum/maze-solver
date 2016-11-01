@@ -5,22 +5,22 @@ require_relative 'pair'
 require_relative 'searches'
 
 WIDTH, HEIGHT = 600, 600
-COLS = 5
+COLS = 10
 ROWS = 5
 CELL_SIZE = 100
 
 class Game < Gosu::Window
 
   def initialize
-    super ROWS*CELL_SIZE, COLS*CELL_SIZE
+    super COLS*CELL_SIZE, ROWS*CELL_SIZE
     self.caption = "Me Am Smart"
     @font = Gosu::Font.new(20)
-    @map = Graph.new(5, 5)
+    @map = Graph.new(ROWS, COLS)
   end
 
   def draw
-    (0..4).each do |row|
-      (0..4).each do |col|
+    (0...ROWS).each do |row|
+      (0...COLS).each do |col|
         draw_cell col*CELL_SIZE, row*CELL_SIZE, CELL_SIZE, CELL_SIZE, type_color(@map.graph[row][col].type)#Gosu::Color.new(100, 50, 50)
         @font.draw("#{@map.graph[row][col].val}", col*CELL_SIZE, row*CELL_SIZE, 1, 1.0, 1.0, 0xff_ffff00)
       end
