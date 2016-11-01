@@ -47,7 +47,6 @@ class Game < Gosu::Window
       type = StateType::change_type(@map.graph[row][col].type)
       @map.graph[row][col].type = type
     when Gosu::KbEnter
-      #puts "#{@map.start_point.x} #{@map.start_point.y} #{@map.end_point.x} #{@map.end_point.y}" if @map.start_point != nil && @map.end_point != nil
       @map.init_map
       result = astar(@map)
       @map.result = result if result != -1

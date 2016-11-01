@@ -14,15 +14,7 @@ class Graph
     init_graph
     puts @rows, @cols
   end
-
-  def set_start_point start_point
-    @start_point = start_point
-  end
-
-  def set_end_point end_point
-    @end_point = end_point
-  end
-
+  
   def init_map
     (0...@rows).each do |row|
       (0...@cols).each do |col|
@@ -48,13 +40,11 @@ class Graph
 
   private
   def init_graph
-    state_val = 0
     @graph = []
     (0...@rows).each do |row|
       tmp = Array.new
       (0...@cols).each do |col|
-        tmp << Node.new(state_val, row, col)
-        state_val += 1
+        tmp << Node.new(row*@cols + col, row, col)
       end
       @graph << tmp
     end
