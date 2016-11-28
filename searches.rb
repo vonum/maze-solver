@@ -30,7 +30,7 @@ def astar(map)
         if state.x != tp.x && state.y != tp.y
           state_val = tp.x*COLS + tp.y
           if  visited[state_val] == nil && check_queue(queue, state_val)
-            queue << State.new(tp.x, tp.y, state_val, state.cost, euclidian_distance(tp.x, tp.y, end_point.x, end_point.y), state)
+            queue << State.new(tp.x, tp.y, state_val, state.cost, manhattan_distance(tp.x, tp.y, end_point.x, end_point.y), state)
             puts "added tp #{tp.x}, #{tp.y}"
           end
         end
@@ -40,7 +40,10 @@ def astar(map)
     #move_king(state, end_point, graph, queue, visited)
 
     # ROOK
-    move_rook(state, end_point, graph, queue, visited)
+    #move_rook(state, end_point, graph, queue, visited)
+
+    # KNIGHT
+    move_knight(state, end_point, graph, queue, visited)
 
     queue.sort! { |first, second| first.cost + first.heuristic <=> second.cost + second.heuristic }
 
