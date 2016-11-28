@@ -13,9 +13,9 @@ class Game < Gosu::Window
 
   def initialize
     super COLS*CELL_SIZE, ROWS*CELL_SIZE
-    self.caption = "Me Am Smart"
     @font = Gosu::Font.new(20)
     @map = Graph.new(ROWS, COLS)
+    self.caption = @map.movements[@map.cur_mov]
   end
 
   def draw
@@ -50,6 +50,10 @@ class Game < Gosu::Window
       @map.init_map
       result = astar(@map)
       @map.result = result if result != -1
+    when Gosu::MsWheelDown
+      self.caption = @map.change_mov(-1)
+    when Gosu::MsWheelUp
+      self.caption = @map.change_mov(1)
     end
   end
 

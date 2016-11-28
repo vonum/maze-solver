@@ -36,17 +36,16 @@ def astar(map)
         end
       end
     end
-    # KING
-    #move_king(state, end_point, graph, queue, visited)
 
-    # ROOK
-    #move_rook(state, end_point, graph, queue, visited)
-
-    # KNIGHT
-    #move_knight(state, end_point, graph, queue, visited)
-
-    # BISHOP
-    move_bishop(state, end_point, graph, queue, visited)
+    if map.cur_mov == 0
+      move_king(state, end_point, graph, queue, visited)
+    elsif map.cur_mov == 1
+      move_rook(state, end_point, graph, queue, visited)
+    elsif map.cur_mov == 2
+      move_bishop(state, end_point, graph, queue, visited)
+    else
+      move_knight(state, end_point, graph, queue, visited)
+    end
 
     queue.sort! { |first, second| first.cost + first.heuristic <=> second.cost + second.heuristic }
 

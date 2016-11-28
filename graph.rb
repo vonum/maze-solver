@@ -1,15 +1,18 @@
 require_relative 'node'
 require_relative 'state_type'
 require_relative 'pair'
+require_relative 'movement'
 
 class Graph
-  attr_accessor :graph, :rows, :cols, :start_point, :end_point, :result, :teleports
+  attr_accessor :graph, :rows, :cols, :start_point, :end_point, :result, :teleports, :movements, :cur_mov
 
   def initialize rows, cols
     @rows = rows
     @cols = cols
     @result = []
     @teleports = []
+    @movements = ["King", "Rook", "Bishop", "Knight"]
+    @cur_mov = 0
 
     init_graph
   end
@@ -37,6 +40,14 @@ class Graph
     init_graph
   end
 
+  def change_mov step
+    @cur_mov += step
+    @cur_mov = 0 if @cur_mov >= @movements.size
+    @cur_mov = @movements.size - 1 if @cur_mov < 0
+
+    return @movements[@cur_mov]
+  end
+
   private
   def init_graph
     @graph = []
@@ -48,5 +59,4 @@ class Graph
       @graph << tmp
     end
   end
-
 end
