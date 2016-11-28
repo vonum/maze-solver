@@ -5,8 +5,8 @@ require_relative 'pair'
 require_relative 'searches'
 
 WIDTH, HEIGHT = 600, 600
-COLS = 10
-ROWS = 5
+COLS = ARGV[0].to_i
+ROWS = ARGV[1].to_i
 CELL_SIZE = 100
 
 class Game < Gosu::Window

@@ -12,9 +12,8 @@ class Graph
     @teleports = []
 
     init_graph
-    puts @rows, @cols
   end
-  
+
   def init_map
     (0...@rows).each do |row|
       (0...@cols).each do |col|
