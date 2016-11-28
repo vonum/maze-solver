@@ -47,7 +47,30 @@ def move_rook state, end_point, graph, queue, visited
   end
 end
 
-def move_bishop
+def move_bishop state, end_point, graph, queue, visited
+  dir_matrix = [[-1, -1], [-1, 1], [1, -1], [1, 1]]
+  dir_matrix.each do |dir|
+    x_step = dir[0]
+    y_step = dir[1]
+    step = 1
+
+    while true
+      child_x = state.x + x_step*step
+      child_y = state.y + y_step*step
+      if validate_position(child_x, child_y)
+        state_val = child_x*COLS + child_y
+        if validate_state(state_val, child_x, child_y, graph, queue, visited)
+          queue << State.new(child_x, child_y, state_val, state.cost + 10,
+                              euclidian_distance(child_x, child_y, end_point.x, end_point.y), state)
+        else
+          break
+        end
+      else
+        break
+      end
+      step += 1
+    end
+  end
 
 
 end
@@ -57,7 +80,6 @@ def move_knight state, end_point, graph, queue, visited
   dir_matrix.each do |dir|
     x_step = dir[0]
     y_step = dir[1]
-
     child_x = state.x + x_step
     child_y = state.y + y_step
 

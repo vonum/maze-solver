@@ -43,7 +43,10 @@ def astar(map)
     #move_rook(state, end_point, graph, queue, visited)
 
     # KNIGHT
-    move_knight(state, end_point, graph, queue, visited)
+    #move_knight(state, end_point, graph, queue, visited)
+
+    # BISHOP
+    move_bishop(state, end_point, graph, queue, visited)
 
     queue.sort! { |first, second| first.cost + first.heuristic <=> second.cost + second.heuristic }
 
