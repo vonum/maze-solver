@@ -29,7 +29,6 @@ class Graph
         end
       end
     end
-    puts @teleports
   end
 
   def reset_map

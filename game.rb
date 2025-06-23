@@ -1,4 +1,4 @@
-require 'rubygems'
+# require 'rubygems'
 require 'gosu'
 require_relative 'graph'
 require_relative 'pair'
@@ -10,7 +10,6 @@ ROWS = ARGV[1].to_i
 CELL_SIZE = 100
 
 class Game < Gosu::Window
-
   def initialize
     super COLS*CELL_SIZE, ROWS*CELL_SIZE
     @font = Gosu::Font.new(20)
@@ -46,7 +45,7 @@ class Game < Gosu::Window
       row, col = get_cell_position self.mouse_x, self.mouse_y
       type = StateType::change_type(@map.graph[row][col].type)
       @map.graph[row][col].type = type
-    when Gosu::KbEnter
+    when Gosu::KbSpace
       @map.init_map
       result = astar(@map)
       @map.result = result if result != -1

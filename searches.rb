@@ -12,11 +12,12 @@ def astar(map)
 
   visited = {}
   queue = []
-  queue << State.new(start_point.x, start_point.y, start_point.x*COLS + start_point.y, 0, 0, nil) #cost = 0, heuristic = 0, parent = nil
+  # cost = 0, heuristic = 0, parent = nil
+  queue << State.new(start_point.x, start_point.y, start_point.x*COLS + start_point.y, 0, 0, nil)
 
   while queue.size > 0
     state = queue.shift
-    visited[state.x*COLS + state.y] = state               #state unique value
+    visited[state.x*COLS + state.y] = state #state unique value
     puts "visiting #{state.val} with cost #{state.cost} and heuristic #{state.heuristic}"
 
     if state.x == end_point.x && state.y == end_point.y

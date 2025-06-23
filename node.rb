@@ -1,5 +1,4 @@
 class Node
-
   attr_accessor :val, :x, :y, :type
 
   def initialize val, x, y, type=0
@@ -8,7 +7,4 @@ class Node
     @y = y
     @type = type
   end
-
-
-
 end
