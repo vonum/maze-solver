@@ -1,6 +1,8 @@
 # Maze Solver
 Simple ruby app that uses A* to solve a grid problem.
 
+![Game](./game.png)
+
 ## Requirements
 * Ruby 2.7.7
 * Bundler 2.4.22
@@ -33,4 +35,3 @@ Scroll mouse to change movement type.
 2. r -> reset grid
 3. Space -> solve
 
-[Game](./game.png)
