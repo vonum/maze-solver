@@ -32,3 +32,5 @@ Scroll mouse to change movement type.
 1. Esc -> exit
 2. r -> reset grid
 3. Space -> solve
+
+[Game](./game.png)
