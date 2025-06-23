@@ -1,7 +1,7 @@
 # Maze Solver
 Simple ruby app that uses A* to solve a grid problem.
 
-![Game](game.png)
+![Game](./game.png "Game")
 
 ## Requirements
 * Ruby 2.7.7
